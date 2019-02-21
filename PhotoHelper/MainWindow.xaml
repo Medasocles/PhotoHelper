@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoHelper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance local:MainViewModel}">
     <Grid>
-        
+        <Button Content="OpenFolderButton" HorizontalAlignment="Left" Margin="10,16,0,0" 
+                VerticalAlignment="Top" Width="116"
+                Command="{Binding OpenSourceFolderCommand}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="131,14,0,0" TextWrapping="Wrap" 
+                 Text="{Binding SelectedPath}" VerticalAlignment="Top" Width="652"/>
+
+
+        <ListBox x:Name="Devices" ItemsSource="{Binding MtpDevices, Mode=OneWay}" Margin="10,90,507.333,173.667"/>
+        <Button Content="List Devices" HorizontalAlignment="Left" Margin="10,65,0,0" 
+            VerticalAlignment="Top" Width="116"
+            Command="{Binding ListMtpDevicesCommand, Mode=OneWay}"/>
+
     </Grid>
 </Window>
