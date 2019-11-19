@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoHelper"
         mc:Ignorable="d"
+        x:Name="This"
         Title="MainWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance local:MainViewModel}">
     <Grid>
@@ -19,6 +20,7 @@
         <Button Content="List Devices" HorizontalAlignment="Left" Margin="10,65,0,0" 
             VerticalAlignment="Top" Width="116"
             Command="{Binding ListMtpDevicesCommand, Mode=OneWay}"/>
+        <ListBox ItemsSource="{Binding UsbStrings, ElementName=This}" HorizontalAlignment="Left" Height="156" Margin="387,90,0,0" VerticalAlignment="Top" Width="281"/>
 
     </Grid>
 </Window>

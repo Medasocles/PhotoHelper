@@ -41,6 +41,9 @@ namespace PhotoHelper
             var devices = MediaDevice.GetDevices();
             foreach (var mediaDevice in devices)
             {
+
+                MtpDevices.Add(mediaDevice.FriendlyName);
+
                 if (mediaDevice.FriendlyName.Contains("G4") && mediaDevice.Manufacturer.Contains("LGE"))
                 {
                     mediaDevice.Connect();
