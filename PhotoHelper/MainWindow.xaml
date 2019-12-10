@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoHelper"
+        xmlns:mediaDevices="clr-namespace:MediaDevices;assembly=MediaDevices"
+        xmlns:mtpDevice="clr-namespace:PhotoHelper.Views.MtpDevice"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance local:MainViewModel}">
@@ -13,12 +15,129 @@
                 Command="{Binding OpenSourceFolderCommand}"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="131,14,0,0" TextWrapping="Wrap" 
                  Text="{Binding SelectedPath}" VerticalAlignment="Top" Width="652"/>
-
-
-        <ListBox x:Name="Devices" ItemsSource="{Binding MtpDevices, Mode=OneWay}" Margin="10,90,507.333,173.667"/>
-        <Button Content="List Devices" HorizontalAlignment="Left" Margin="10,65,0,0" 
+        
+        <Button Content="List Devices" HorizontalAlignment="Left" Margin="10,50,0,0" 
             VerticalAlignment="Top" Width="116"
             Command="{Binding ListMtpDevicesCommand, Mode=OneWay}"/>
+        <Button x:Name="ConnectDeviceButton" Content="Connect Device" 
+                HorizontalAlignment="Left" Margin="149,50,0,0" VerticalAlignment="Top" Width="100"
+                Command="{Binding ConnectDeviceCommand, Mode=OneWay}"/>
+        <Button x:Name="DisconnectDeviceButton" Content="Disconnect Device" 
+                HorizontalAlignment="Left" Margin="254,50,0,0" VerticalAlignment="Top" Width="100"
+                Command="{Binding DisconnectDeviceCommand, Mode=OneWay}"/>
 
+        <Grid Margin="0,90,0.333,-0.333">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox Grid.Column="0" 
+                     ItemsSource="{Binding MtpDevices, Mode=OneWay}"
+                     Background="LightGoldenrodYellow" 
+                     SelectedItem="{Binding SelectedDevice, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type mediaDevices:MediaDevice}">
+                        <TextBlock Text="{Binding FriendlyName, Mode=OneWay}"></TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <mtpDevice:MediaDeviceInfoView Grid.Column="1" 
+                                           VerticalAlignment="Top"
+                                           DataContext="{Binding ConnectedDevice, Mode=OneWay}"/>
+
+            <ListBox ItemsSource="{Binding EntriesList, Mode=OneWay}" 
+                     Grid.Column="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type mediaDevices:MediaFileInfo}">
+                        <StackPanel Orientation="Vertical" Background="LightBlue" >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="Id: " />
+                                        <Run Text="{Binding Id, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="PersistentUniqueId: " />
+                                        <Run Text="{Binding PersistentUniqueId, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="Name: " />
+                                        <Run Text="{Binding Name, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="FullName: " />
+                                        <Run Text="{Binding FullName, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="Directory: " />
+                                        <Run Text="{Binding Directory.FullName, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="Attributes: " />
+                                        <Run Text="{Binding Attributes, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="CreationTime: " />
+                                        <Run Text="{Binding CreationTime, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="DateAuthored: " />
+                                        <Run Text="{Binding DateAuthored, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="LastWriteTime: " />
+                                        <Run Text="{Binding LastWriteTime, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Inlines>
+                                        <Run Text="Length: " />
+                                        <Run Text="{Binding Length, Mode=OneWay}" />
+                                    </TextBlock.Inlines>
+                                </TextBlock>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
     </Grid>
 </Window>

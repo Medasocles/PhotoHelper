@@ -13,15 +13,22 @@ namespace PhotoHelper
     /// </summary>
     public partial class App : Application
     {
+        private MainViewModel _mainViewModel;
+
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            var vm = new MainViewModel();
-            var window = new MainWindow();
-            window.DataContext = vm;
+            _mainViewModel = new MainViewModel();
+            var window = new MainWindow { DataContext = _mainViewModel };
 
-            this.MainWindow = window;
+            MainWindow = window;
+            MainWindow.Closing += OnMainWindowClosing;
 
             window.ShowDialog();
+        }
+
+        private void OnMainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _mainViewModel.Terminate();
         }
     }
 }

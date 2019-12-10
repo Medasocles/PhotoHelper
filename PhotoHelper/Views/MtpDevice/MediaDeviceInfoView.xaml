@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="PhotoHelper.Views.MtpDevice.MediaDeviceInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhotoHelper.Views.MtpDevice"
+             xmlns:photoHelper="clr-namespace:PhotoHelper"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="LightGray">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0">
+            <TextBlock.Inlines>
+                <Run Text="DeviceId: " />
+                <Run Text="{Binding DeviceId, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="1">
+            <TextBlock.Inlines>
+                <Run Text="FriendlyName: " />
+                <Run Text="{Binding FriendlyName, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="2">
+            <TextBlock.Inlines>
+                <Run Text="Description: " />
+                <Run Text="{Binding Description, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="3">
+            <TextBlock.Inlines>
+                <Run Text="DateTime: " />
+                <Run Text="{Binding DateTime, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="4">
+            <TextBlock.Inlines>
+                <Run Text="FirmwareVersion: " />
+                <Run Text="{Binding FirmwareVersion, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="5">
+            <TextBlock.Inlines>
+                <Run Text="FunctionalUniqueId: " />
+                <Run Text="{Binding FunctionalUniqueId, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="6">
+            <TextBlock.Inlines>
+                <Run Text="IsCaseSensitive: " />
+                <Run Text="{Binding IsCaseSensitive, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="7">
+            <TextBlock.Inlines>
+                <Run Text="IsConnected: " />
+                <Run Text="{Binding IsConnected, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="8">
+            <TextBlock.Inlines>
+                <Run Text="Manufacturer: " />
+                <Run Text="{Binding Manufacturer, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="9">
+            <TextBlock.Inlines>
+                <Run Text="Model: " />
+                <Run Text="{Binding Model, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="10">
+            <TextBlock.Inlines>
+                <Run Text="ModelUniqueId: " />
+                <Run Text="{Binding ModelUniqueId, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="11">
+            <TextBlock.Inlines>
+                <Run Text="NetworkIdentifier: " />
+                <Run Text="{Binding NetworkIdentifier, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="12">
+            <TextBlock.Inlines>
+                <Run Text="DeviceType: " />
+                <Run Text="{Binding DeviceType, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="13">
+            <TextBlock.Inlines>
+                <Run Text="PnPDeviceID: " />
+                <Run Text="{Binding PnPDeviceID, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="14">
+            <TextBlock.Inlines>
+                <Run Text="PowerLevel: " />
+                <Run Text="{Binding PowerLevel, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="15">
+            <TextBlock.Inlines>
+                <Run Text="PowerSource: " />
+                <Run Text="{Binding PowerSource, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="16">
+            <TextBlock.Inlines>
+                <Run Text="Protocol: " />
+                <Run Text="{Binding Protocol, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="17">
+            <TextBlock.Inlines>
+                <Run Text="SyncPartner: " />
+                <Run Text="{Binding SyncPartner, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="18">
+            <TextBlock.Inlines>
+                <Run Text="SerialNumber: " />
+                <Run Text="{Binding SerialNumber, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="19">
+            <TextBlock.Inlines>
+                <Run Text="SupportedFormatsAreOrdered: " />
+                <Run Text="{Binding SupportedFormatsAreOrdered, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <TextBlock Grid.Row="20">
+            <TextBlock.Inlines>
+                <Run Text="SupportsNonConsumable: " />
+                <Run Text="{Binding SupportsNonConsumable, Mode=OneWay}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+
+    </Grid>
+</UserControl>
