@@ -70,6 +70,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\MainView\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MtpDevice\MediaDeviceInfoView.xaml.cs">
       <DependentUpon>MediaDeviceInfoView.xaml</DependentUpon>
     </Compile>
@@ -84,11 +87,15 @@
     <Compile Include="Core\Command\CustomInvokeCommandAction.cs" />
     <Compile Include="Core\Command\RelayCommand.cs" />
     <Compile Include="Core\Exceptions\IncompatibleTypesException.cs" />
-    <Compile Include="MainViewModel.cs" />
+    <Compile Include="ViewModels\Main\MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MainView\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MtpDevice\MediaDeviceInfoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

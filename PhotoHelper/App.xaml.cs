@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using PhotoHelper.ViewModels.Main;
+using PhotoHelper.Views.MainView;
 using System.Windows;
 
 namespace PhotoHelper
@@ -13,12 +9,16 @@ namespace PhotoHelper
     /// </summary>
     public partial class App : Application
     {
+        private MainView _mainView;
         private MainViewModel _mainViewModel;
+
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             _mainViewModel = new MainViewModel();
-            var window = new MainWindow { DataContext = _mainViewModel };
+            _mainView = new MainView { DataContext = _mainViewModel };
+
+            var window = new MainWindow { Content = _mainView };
 
             MainWindow = window;
             MainWindow.Closing += OnMainWindowClosing;

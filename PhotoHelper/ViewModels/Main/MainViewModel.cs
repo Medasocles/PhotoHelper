@@ -5,10 +5,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
-using System.Runtime.ExceptionServices;
+using System.Threading;
 using System.Windows.Input;
 
-namespace PhotoHelper
+namespace PhotoHelper.ViewModels.Main
 {
     internal class MainViewModel : INotifyPropertyChanged
     {
@@ -59,7 +59,26 @@ namespace PhotoHelper
 
             var images = ConnectedDevice.GetContentLocations(ContentType.Image);
             var dirs = ConnectedDevice.GetDirectories(ConnectedDevice.GetRootDirectory().FullName);
-            var test = ConnectedDevice.GetFiles(@"\\SD-Karte von Transcend\DCIM\Camera");
+            //var test = ConnectedDevice.GetFiles(@"\\SD-Karte von Transcend\DCIM\Camera");
+
+            if(dirs.Length == 0)
+                return;
+
+            var thread = new Thread(
+                () =>
+                {
+                    var camPath = @"\\SD-Karte von Transcend\DCIM\Camera";
+                    var test = ConnectedDevice.GetFiles(camPath);
+
+                    foreach (var s in test)
+                    {
+                        var filePath = Path.Combine(camPath, s);
+                        var fi = ConnectedDevice.GetFileInfo(filePath);
+
+                    }
+                });
+
+            thread.Start();
 
 
             foreach (var enumerateFileSystemInfo in root.EnumerateFileSystemInfos())
@@ -71,9 +90,9 @@ namespace PhotoHelper
 
                     if (fi.FullName.Contains("DCIM"))
                     {
-                        
 
-                        
+
+
 
                         foreach (var dir in fi.Directory.EnumerateDirectories())
                         {
@@ -88,7 +107,7 @@ namespace PhotoHelper
                                 }
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -132,7 +151,7 @@ namespace PhotoHelper
             }
         }
 
-        
+
 
         private void OnListMtpDevicesCommandExecute(object obj)
         {
