@@ -61,20 +61,41 @@ namespace PhotoHelper.ViewModels.Main
             var dirs = ConnectedDevice.GetDirectories(ConnectedDevice.GetRootDirectory().FullName);
             //var test = ConnectedDevice.GetFiles(@"\\SD-Karte von Transcend\DCIM\Camera");
 
-            if(dirs.Length == 0)
+            if (dirs.Length == 0)
                 return;
 
             var thread = new Thread(
                 () =>
                 {
                     var camPath = @"\\SD-Karte von Transcend\DCIM\Camera";
-                    var test = ConnectedDevice.GetFiles(camPath);
+                    var directories = ConnectedDevice.GetDirectories(camPath);
+                    var files = ConnectedDevice.GetFiles(camPath);
 
-                    foreach (var s in test)
-                    {
+                for (int i = 0; i < files.Length; i++)
+                {
+                        var s = files[i];
+                        var fileName = Path.GetFileName(s);
                         var filePath = Path.Combine(camPath, s);
                         var fi = ConnectedDevice.GetFileInfo(filePath);
 
+                        try
+                        {
+                            using (var stream = new MemoryStream())
+                            {
+                                ConnectedDevice.DownloadFile(s, stream);
+                                using (var fs = new FileStream($"C:\\Dev\\#Test\\DownloadedFromG4\\{fileName}", FileMode.Create))
+                                {
+                                    stream.Seek(0, SeekOrigin.Begin);
+                                    stream.WriteTo(fs);
+                                }
+                            }
+
+                        }
+                        catch (System.Exception e)
+                        {
+
+                            throw;
+                        }
                     }
                 });
 
